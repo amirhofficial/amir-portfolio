@@ -1,0 +1,146 @@
+.character {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  transform-origin: center bottom;
+}
+
+.shadow {
+  fill: rgba(0, 0, 0, 0.32);
+  transform-origin: center;
+}
+
+.pants {
+  fill: #242832;
+  stroke: #242832;
+  stroke-width: 12;
+  stroke-linecap: round;
+}
+
+.hoodie {
+  fill: none;
+  stroke: #282d36;
+  stroke-width: 5;
+  stroke-linecap: round;
+  opacity: 0.75;
+}
+
+.state-idle {
+  animation: idle 1.5s ease-in-out infinite;
+}
+
+.state-run {
+  animation: body-run 0.34s ease-in-out infinite alternate;
+}
+
+.state-run .leftLeg {
+  animation: leg-left 0.24s ease-in-out infinite alternate;
+  transform-origin: 48px 106px;
+}
+
+.state-run .rightLeg {
+  animation: leg-right 0.24s ease-in-out infinite alternate;
+  transform-origin: 70px 106px;
+}
+
+.state-run .leftArm {
+  animation: arm-left 0.24s ease-in-out infinite alternate;
+  transform-origin: 41px 68px;
+}
+
+.state-run .rightArm {
+  animation: arm-right 0.24s ease-in-out infinite alternate;
+  transform-origin: 79px 68px;
+}
+
+.state-run .headGroup {
+  animation: head-bob 0.34s ease-in-out infinite alternate;
+  transform-origin: 60px 45px;
+}
+
+.state-jump {
+  animation: jump 0.2s ease-out both;
+}
+
+.state-jump .leftLeg,
+.state-jump .rightLeg {
+  transform: translateY(3px) rotate(-3deg);
+}
+
+.state-fall {
+  animation: fall 0.22s ease-out both;
+}
+
+.state-land {
+  animation: land 0.16s ease-out both;
+}
+
+.state-hit {
+  animation: hit 0.25s ease-out both;
+}
+
+@keyframes idle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+@keyframes body-run {
+  from { transform: translateY(0) rotate(-1deg); }
+  to { transform: translateY(-2px) rotate(1deg); }
+}
+
+@keyframes leg-left {
+  from { transform: rotate(16deg); }
+  to { transform: rotate(-18deg); }
+}
+
+@keyframes leg-right {
+  from { transform: rotate(-18deg); }
+  to { transform: rotate(16deg); }
+}
+
+@keyframes arm-left {
+  from { transform: rotate(-15deg); }
+  to { transform: rotate(18deg); }
+}
+
+@keyframes arm-right {
+  from { transform: rotate(18deg); }
+  to { transform: rotate(-15deg); }
+}
+
+@keyframes head-bob {
+  from { transform: translateY(1px); }
+  to { transform: translateY(-1px); }
+}
+
+@keyframes jump {
+  from { transform: scale(1.02, 0.96); }
+  to { transform: scale(0.98, 1.04); }
+}
+
+@keyframes fall {
+  from { transform: rotate(-1deg); }
+  to { transform: rotate(1deg); }
+}
+
+@keyframes land {
+  0% { transform: scale(1.08, 0.82); }
+  70% { transform: scale(0.97, 1.04); }
+  100% { transform: scale(1); }
+}
+
+@keyframes hit {
+  0% { transform: rotate(0) scale(1); opacity: 1; }
+  50% { transform: rotate(12deg) scale(0.96); opacity: 1; }
+  100% { transform: rotate(18deg) scale(0.92); opacity: 0.88; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .character,
+  .character * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
